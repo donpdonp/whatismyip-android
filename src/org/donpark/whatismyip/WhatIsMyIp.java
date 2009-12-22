@@ -1,6 +1,8 @@
 package org.donpark.whatismyip;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
@@ -45,11 +47,12 @@ public class WhatIsMyIp extends ListActivity {
 	    		Enumeration<InetAddress> addrs = iface.getInetAddresses();
 		    	for(;addrs.hasMoreElements();) {
 		    		InetAddress addr = addrs.nextElement();
-		    		longName = longName + addr.toString();
+		    		longName = longName + " = " + addr.toString().substring(1);
 		    		Log.i(appTag, "  IP address is "+addr);
 		    	}
 	    		names.add(longName);
 	    	}
+	    	
 	    	setListAdapter(new ArrayAdapter<String>(this,
 	    			                       android.R.layout.simple_list_item_1, 
 	    			                       names));
