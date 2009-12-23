@@ -53,6 +53,22 @@ public class WhatIsMyIp extends ListActivity {
 	    		names.add(longName);
 	    	}
 	    	
+//	    	Runtime runtime = Runtime.getRuntime();
+//	    	try {
+//				Process netstat = runtime.exec("cat /proc/net/route");
+//				BufferedReader out = new BufferedReader(new InputStreamReader(netstat.getInputStream()));
+//				String nextline = null;
+//				String rightline = null;
+//				while(nextline != null && rightline == null){
+//					nextline = out.readLine();
+//					//String[] tokens = nextline.split("\\s+");
+//					Log.i(appTag, nextline+" match:"+nextline.matches("00000000"));
+//				}	    	
+//				names.add(rightline);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	    	setListAdapter(new ArrayAdapter<String>(this,
 	    			                       android.R.layout.simple_list_item_1, 
 	    			                       names));
