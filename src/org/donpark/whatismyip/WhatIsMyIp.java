@@ -1,17 +1,9 @@
 package org.donpark.whatismyip;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +25,13 @@ public class WhatIsMyIp extends ListActivity {
 		super.onResume();
 		interfaces = System.getNetworkInterfaces();
 		setListAdapter(new IconicAdapter());
+		
+		TextView gateway = (TextView)findViewById(R.id.gateway_header);
+		gateway.setText("Default Gateway");
+		TextView gatewayLabel = (TextView)findViewById(R.id.gateway_label);
+		gatewayLabel.setText(System.getDefaultGateway());
+		ImageView gatewayIcon = (ImageView)findViewById(R.id.gateway_icon);
+		gatewayIcon.setImageResource(R.drawable.door_in);
 	}
 	
 	class IconicAdapter extends ArrayAdapter {
