@@ -4,4 +4,7 @@
     <string name="app_name">WhatIsMyIp</string>
     <string name="gateway_header">Default Gateway</string>
     <string name="legend">Network interface names: lo = loopback. eth0 = USB. rmnet0 = Celluar. tiwlan0 = Wifi </string>
+    <string name="menu_help">Legend</string>
+    <string name="menu_about">About</string>
+    <string name="about">Android app by Don Park. Icons by FamFamFam.</string>
 </resources>

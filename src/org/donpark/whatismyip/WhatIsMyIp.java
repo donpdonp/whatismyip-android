@@ -2,10 +2,16 @@ package org.donpark.whatismyip;
 
 import java.util.Vector;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -63,4 +69,33 @@ public class WhatIsMyIp extends ListActivity {
 		}
 
 	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		boolean result = super.onCreateOptionsMenu(menu);
+		menu.add(Menu.NONE, 1, Menu.NONE, R.string.menu_about).setIcon(android.R.drawable.ic_menu_info_details);
+		return result;
+	}
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.i(appTag, "menu:"+item.getItemId());
+		
+		switch (item.getItemId()) {
+		case 1:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.about)
+			       .setCancelable(false)
+			       .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.cancel();
+			           }
+			       });
+			builder.create().show();
+			break;
+		case 2:
+			
+			break;
+		}
+		
+		return false;
+	}
+
 }
