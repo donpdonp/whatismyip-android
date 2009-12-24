@@ -1,48 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:admobsdk="http://schemas.android.com/apk/res/org.donpark.whatismyip"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-        <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-<ListView android:id="@+id/android:list"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-<TextView android:id="@+id/listtextstyle"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    />
-    </LinearLayout>
-    <LinearLayout     android:orientation="vertical"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-        android:layout_weight="0"
-    >
-	<TextView android:id="@+id/listtextstyle"
-    	android:layout_width="fill_parent" 
-	    android:layout_height="wrap_content"
-	    android:text="@string/legend" 
-    />
-    <com.admob.android.ads.AdView  
-                        android:id="@+id/ad" 
-                        android:layout_width="fill_parent" 
-                        android:layout_height="wrap_content"
-                        admobsdk:backgroundColor="#000000"
-                        admobsdk:textColor="#FFFFFF"
-                        admobsdk:keywords="Android network utility IP address"
-                />
-    
+	xmlns:admobsdk="http://schemas.android.com/apk/res/org.donpark.whatismyip"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_weight="1">
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="@string/hello" />
+		<ListView android:id="@+id/android:list"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="@string/hello" />
+		<TextView android:id="@+id/listtextstyle"
+			android:layout_width="fill_parent" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_weight="0">
+		<TextView android:id="@+id/legend"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="@string/legend" />
+		<com.admob.android.ads.AdView android:id="@+id/ad"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			admobsdk:backgroundColor="#000000" admobsdk:textColor="#FFFFFF"
+			admobsdk:keywords="Android network utility IP address"
+			admobsdk:testing="true" />
 	</LinearLayout>
 </LinearLayout>
