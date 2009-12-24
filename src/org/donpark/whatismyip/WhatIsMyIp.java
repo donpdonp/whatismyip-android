@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,6 @@ public class WhatIsMyIp extends ListActivity {
 		interfaces = System.getNetworkInterfaces();
 		setListAdapter(new IconicAdapter());
 		
-		TextView gateway = (TextView)findViewById(R.id.gateway_header);
-		gateway.setText("Default Gateway");
 		TextView gatewayLabel = (TextView)findViewById(R.id.gateway_label);
 		gatewayLabel.setText(System.getDefaultGateway());
 		ImageView gatewayIcon = (ImageView)findViewById(R.id.gateway_icon);
@@ -45,10 +44,20 @@ public class WhatIsMyIp extends ListActivity {
 			TextView label = (TextView) row.findViewById(R.id.label);
 			label.setText(interfaces.get(position)[1]);
 			ImageView icon = (ImageView) row.findViewById(R.id.icon);
-			if (interfaces.get(position)[0] == "bob") {
-				icon.setImageResource(R.drawable.telephone);
-			} else {
+			String iface = interfaces.get(position)[0];
+			Log.i(appTag, "testing "+iface+" len:"+iface.length());
+			if (iface.equals("lo")) {
+				label.setTextSize(15);
+				icon.setImageResource(R.drawable.arrow_refresh);
+			}
+			if (iface.matches("^eth\\d+")) {
 				icon.setImageResource(R.drawable.server);
+			}
+			if (iface.matches("^rmnet\\d+")) {
+				icon.setImageResource(R.drawable.telephone);
+			}
+			if (iface.matches("^tiwlan\\d+")) {
+				icon.setImageResource(R.drawable.transmit_blue);
 			}
 			return (row);
 		}
