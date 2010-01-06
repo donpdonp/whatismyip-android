@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Network Interfaces / IP Address</string>
+    <string name="hello">IP Address /netmask</string>
     <string name="app_name">WhatIsMyIp</string>
     <string name="gateway_header">Default Gateway</string>
     <string name="legend">Network interface names: lo = loopback. eth0 = USB. rmnet0 = Celluar. tiwlan0 = Wifi </string>
