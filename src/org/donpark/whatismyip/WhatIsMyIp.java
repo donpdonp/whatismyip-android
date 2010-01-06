@@ -56,8 +56,8 @@ public class WhatIsMyIp extends ListActivity {
 			String iface = ifacedata[0];
 
 			if (iface.equals("lo")) {
-				label.setTextSize(15);
-				mask.setTextSize(12);
+				label.setTextSize(19);
+				mask.setTextSize(14);
 				icon.setImageResource(R.drawable.arrow_refresh);
 			}
 			if (iface.matches("^eth\\d+")) {
