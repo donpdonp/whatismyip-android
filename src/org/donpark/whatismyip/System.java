@@ -9,6 +9,8 @@ import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.util.Log;
 
@@ -31,7 +33,7 @@ public class System {
 				for (; addrs.hasMoreElements();) {
 					InetAddress addr = addrs.nextElement();
 					String ipaddr = addr.toString().substring(1);
-					interfaces.addElement(new String[] {name, ipaddr});
+					interfaces.addElement(new String[] {name, ipaddr, ""+maskBitCount(name)});
 				}
 			}
 		} catch (SocketException e) {
@@ -44,9 +46,7 @@ public class System {
     	Runtime runtime = Runtime.getRuntime();
 
     	try {
-    		Log.i(appTag,"pre cat");
 			Process netstat = runtime.exec("cat /proc/net/route");
-    		Log.i(appTag,"post cat");
 			BufferedReader out = new BufferedReader(new InputStreamReader(netstat.getInputStream()));
 			String nextline;
 			boolean winner = false;
@@ -55,7 +55,6 @@ public class System {
 				String regex = "^\\w+\\s+00000000.*";
 				winner = nextline.matches(regex);
 				if(winner) {
-					Log.i(appTag, "test:" +nextline+" regex:"+regex+" match:"+winner);
 					StringTokenizer st = new StringTokenizer(nextline);
 					st.nextToken(); // interface
 					st.nextToken(); // destination
@@ -79,5 +78,47 @@ public class System {
 		Integer dec3 = Integer.parseInt(octet3, 16);
 		Integer dec4 = Integer.parseInt(octet4, 16);
 		return dec4+"."+dec3+"."+dec2+"."+dec1;
+	}
+	
+	public static int maskBitCount(String iface) {
+		Runtime runtime = Runtime.getRuntime();
+		Process netstat;
+		try {
+			netstat = runtime.exec("ifconfig "+iface);
+			BufferedReader out = new BufferedReader(new InputStreamReader(netstat.getInputStream()));
+			String config = out.readLine();
+			Log.i(appTag, "out: "+config);
+			Pattern p = Pattern.compile("\\d+\\.\\d+\\.\\d+\\.\\d+");
+			Matcher m = p.matcher(config);
+			m.find(); m.find();
+			String ipmask = m.group();			
+			return ipMaskToBits(ipmask);
+		} catch (IOException e) {
+		}
+		return 0;
+	}
+
+	public static int ipMaskToBits(String ipmask) {
+		Pattern p = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)");
+		Matcher m = p.matcher(ipmask);
+		m.find();
+		int o1 = Integer.parseInt(m.group(1));
+		int o2 = Integer.parseInt(m.group(2));
+		int o3 = Integer.parseInt(m.group(3));
+		int o4 = Integer.parseInt(m.group(4));
+		return onBits(o1)+onBits(o2)+onBits(o3)+onBits(o4);
+	}
+	
+	public static int onBits(int i) {
+		int ob = 0;
+		if((i & 128) == 128) { ob++; }
+		if((i & 64) == 64) { ob++; }
+		if((i & 32) == 32) { ob++; }
+		if((i & 16) == 16) { ob++; }
+		if((i & 8) == 8) { ob++; }
+		if((i & 4) == 4) { ob++; }
+		if((i & 2) == 2) { ob++; }
+		if((i & 1) == 1) { ob++; }
+		return ob;
 	}
 }
