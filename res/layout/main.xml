@@ -32,7 +32,8 @@
 		<com.admob.android.ads.AdView android:id="@+id/ad"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			admobsdk:backgroundColor="#000000" admobsdk:textColor="#FFFFFF"
-			admobsdk:keywords="Android network utility IP address"
-			admobsdk:testing="true" />
+			admobsdk:keywords="Android network utility IP address" 
+			 admobsdk:testing="true"
+			  />
 	</LinearLayout>
 </LinearLayout>
