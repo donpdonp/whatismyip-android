@@ -49,12 +49,15 @@ public class WhatIsMyIp extends ListActivity {
 			View row = inflater.inflate(R.layout.row, parent, false);
 			TextView label = (TextView) row.findViewById(R.id.label);
 			String[] ifacedata = interfaces.get(position);
-			label.setText(ifacedata[1] + "/" + ifacedata[2]);
+			label.setText(ifacedata[1]);
+			TextView mask = (TextView) row.findViewById(R.id.mask);
+			mask.setText("/" + ifacedata[2]);
 			ImageView icon = (ImageView) row.findViewById(R.id.icon);
 			String iface = ifacedata[0];
 
 			if (iface.equals("lo")) {
 				label.setTextSize(15);
+				mask.setTextSize(12);
 				icon.setImageResource(R.drawable.arrow_refresh);
 			}
 			if (iface.matches("^eth\\d+")) {
