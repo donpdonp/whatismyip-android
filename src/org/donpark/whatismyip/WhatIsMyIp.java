@@ -36,7 +36,7 @@ public class WhatIsMyIp extends ListActivity {
 		TextView gatewayLabel = (TextView)findViewById(R.id.gateway_label);
 		gatewayLabel.setText(System.getDefaultGateway());
 		ImageView gatewayIcon = (ImageView)findViewById(R.id.gateway_icon);
-		gatewayIcon.setImageResource(R.drawable.door_in);
+		gatewayIcon.setImageResource(R.drawable.globe);
 	}
 	
 	class IconicAdapter extends ArrayAdapter {
