@@ -69,6 +69,9 @@ public class WhatIsMyIp extends ListActivity {
 			if (iface.matches("^tiwlan\\d+")) {
 				icon.setImageResource(R.drawable.transmit_blue);
 			}
+			
+			TextView ifname = (TextView) row.findViewById(R.id.ifname);
+			ifname.setText(iface);
 			return (row);
 		}
 
