@@ -24,4 +24,17 @@
 				android:textSize="30sp" android:paddingLeft="5px"/>
 		</LinearLayout>
 	</LinearLayout>
+       <LinearLayout android:orientation="vertical"
+               android:layout_width="fill_parent" android:layout_height="wrap_content"
+               android:layout_weight="0" android:id="@+id/admob_layout">
+               <TextView android:id="@+id/legend" android:layout_width="fill_parent"
+                       android:layout_height="wrap_content" android:text="" />
+               <com.admob.android.ads.AdView android:id="@+id/ad"
+                       android:layout_width="fill_parent" android:layout_height="wrap_content"
+                       admobsdk:backgroundColor="#000000" admobsdk:textColor="#FFFFFF"
+                       admobsdk:keywords="router network utility IP address gateway ethernet" 
+                        admobsdk:testing="true"
+                         />
+       </LinearLayout>
+	
 </LinearLayout>
