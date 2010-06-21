@@ -8,6 +8,8 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,12 +45,25 @@ public class WhatIsMyIp extends ListActivity {
 		gatewayIcon.setImageResource(R.drawable.globe);
 		
 		LinearLayout layout = (LinearLayout) findViewById(R.id.top_layout);
-		AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "360059d9611b4feeab87c4c05b210658");
-		RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
-		layout.addView(adWhirlLayout, adWhirlLayoutParams);
+		//AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "360059d9611b4feeab87c4c05b210658");
+		//RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
+		//layout.addView(adWhirlLayout, adWhirlLayoutParams);
+		if(plugin("adstop")) {
+			layout.removeView(findViewById(R.id.admob_layout));
+		}
 		
 	}
 	
+	private boolean plugin(String plugin_name) {
+		PackageManager pm=getPackageManager();
+		try {
+			pm.getApplicationInfo("org.donpark.whatismyip.plugins."+plugin_name, 0);
+			return true;
+		} catch (NameNotFoundException e) {
+			return false;
+		}
+	}
+
 	class IconicAdapter extends ArrayAdapter {
 		  IconicAdapter() {
 		    super(WhatIsMyIp.this, R.layout.row, interfaces.toArray());
