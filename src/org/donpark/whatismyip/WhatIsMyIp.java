@@ -2,6 +2,8 @@ package org.donpark.whatismyip;
 
 import java.util.Vector;
 
+import com.adwhirl.AdWhirlLayout;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -16,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class WhatIsMyIp extends ListActivity {
@@ -37,6 +41,12 @@ public class WhatIsMyIp extends ListActivity {
 		gatewayLabel.setText(System.getDefaultGateway());
 		ImageView gatewayIcon = (ImageView)findViewById(R.id.gateway_icon);
 		gatewayIcon.setImageResource(R.drawable.globe);
+		
+		LinearLayout layout = (LinearLayout) findViewById(R.id.top_layout);
+		AdWhirlLayout adWhirlLayout = new AdWhirlLayout(this, "360059d9611b4feeab87c4c05b210658");
+		RelativeLayout.LayoutParams adWhirlLayoutParams = new RelativeLayout.LayoutParams(320, 52);
+		layout.addView(adWhirlLayout, adWhirlLayoutParams);
+		
 	}
 	
 	class IconicAdapter extends ArrayAdapter {
